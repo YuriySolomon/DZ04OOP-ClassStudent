@@ -11,10 +11,7 @@ Student::Student(const char* name, const char* surname, const char* otchestvo, c
 	SetOtchestvo(otchestvo);
 	//SetBirthday(birthday);
 	SetAddress(address);
-	SetPhone(phone);
-	//SetZachot();
-	//SetKursach(kursach);
-	//SetExams(exams);
+	SetPhone(phone);	
 }
 
 Student::Student(const Student& original)
@@ -66,14 +63,12 @@ void Student::SetOtchestvo(const char* otchestvo) // Сеттер на ввод отчества
 	strcpy_s(this->otchestvo, size - 1, otchestvo);
 }
 
-//void Student::SetBirthday(Date birthday) // Сеттер на ввод адреса
-//{
-//	if (birthday.day < 0 && birthday.day > 31)
-//	{
-//		throw "Вы не ввели неправильный день!\n";
-//	}
-//	this->birthday = birthday;
-//}
+void Student::SetBirthday(short day, short month, short year) // Сеттер на ввод адреса
+{
+	birthday.SetDay(day);
+	birthday.SetMonth(month);
+	birthday.SetYear(year);
+}
 
 void Student::SetAddress(const char* address) // Сеттер на ввод адреса
 {
@@ -129,7 +124,7 @@ void Student::SetExams(const short grade) // Сеттер на создание оценок за экзаме
 		temp[i] = exams[i];
 	}
 	temp[exams_count] = grade;
-	delete[] kursach;
+	delete[] exams;
 	exams = temp;
 	exams_count++;
 }
@@ -149,10 +144,10 @@ string Student::GetOtchestvo() const //Показывает отчество студента
 	return otchestvo;
 }
 
-//Date Student::GetBirthday() const //Показывает дату рождения студента
-//{
-//	return birthday;
-//}
+void Student::GetBirthday() const //Показывает дату рождения студента
+{
+	cout << birthday.GetDate() << ":" << birthday.GetMonth() << ":" << birthday.GetYear();
+}
 
 string Student::GetAddress() const //Показывает адресс студента
 {
@@ -193,7 +188,8 @@ void Student::ShowStudent() // показ всех полей объекта студент
 	cout << GetName() << "\n";
 	cout << GetSurname() << "\n";
 	cout << GetOtchestvo() << "\n";
-	//cout << GetBirthday() << "\n";
+	GetBirthday();
+	cout << "\n";
 	cout << GetAddress() << "\n";
 	cout << GetPhone() << "\n";
 	GetZachot();

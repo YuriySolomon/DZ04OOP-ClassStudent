@@ -28,7 +28,7 @@ public:
 	void SetName(const char* name); // Сеттер на ввод имени
 	void SetSurname(const char* surname); // Сеттер на ввод имени
 	void SetOtchestvo(const char* otchestvo); // Сеттер на ввод отчества
-	//void SetBirthday(Date birthday);
+	void SetBirthday(short day, short month, short year);
 	void SetAddress(const char* address); // Сеттер на ввод адреса
 	void SetPhone(const char* phone); // Сеттер на ввод адреса
 	void SetZachot(const short grade); // Сеттер на создание оценок по зачетам
@@ -37,7 +37,7 @@ public:
 	string GetName() const; //Показывает имя студента
 	string GetSurname() const; //Показывает фамилии студента
 	string GetOtchestvo() const; //Показывает отчество студента
-	//Date GetBirthday() const; //Показывает дату рождения студента
+	void GetBirthday() const; //Показывает дату рождения студента
 	string GetAddress() const; //Показывает адресс студента
 	string GetPhone() const; //Показывает телефонный номер студента
 	void GetZachot(); //Показывает оценки по зачетам
