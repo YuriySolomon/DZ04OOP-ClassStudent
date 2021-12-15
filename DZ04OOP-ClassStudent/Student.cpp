@@ -11,7 +11,10 @@ Student::Student(const char* name, const char* surname, const char* otchestvo, c
 	SetOtchestvo(otchestvo);
 	//SetBirthday(birthday);
 	SetAddress(address);
-	SetPhone(phone);	
+	SetPhone(phone);
+	//SetZachot();
+	//SetKursach(kursach);
+	//SetExams(exams);
 }
 
 Student::Student(const Student& original)
@@ -31,6 +34,7 @@ Student::~Student()
 	if (otchestvo != nullptr) delete[] otchestvo;
 	if (address != nullptr) delete[] address;
 	if (phone != nullptr) delete[] phone;
+	if (zachot != nullptr) delete[] zachot;
 }
 void Student::SetName(const char* name) // Сеттер на ввод имени
 {
@@ -91,23 +95,46 @@ void Student::SetPhone(const char* phone) // Сеттер на ввод адреса
 	strcpy_s(this->phone, size - 1, phone);
 }
 
-void Student::SetZachot(const int* zachot) // Сеттер на создание оценок по зачетам
+void Student::SetZachot(const short grade) // Сеттер на создание оценок по зачетам
 {
-	
-	this->zachot = new short[size];
-	
+	short* temp = new short[zachot_count + 1];
+	for (int i = 0; i < zachot_count; i++)
+	{
+		temp[i] = zachot[i];
+	}
+	temp[zachot_count] = grade;
+	delete[] zachot;
+	zachot = temp;
+	zachot_count++;	
 }
 
-void Student::SetKursach(const int* kursach) // Сеттер на создание оценок за курсач
+void Student::SetKursach(const short grade) // Сеттер на создание оценок за курсач
 {
-	this->kursach = new short[size];
-}
-void Student::SetExams(const int* exams) // Сеттер на создание оценок за экзамены
+	short* temp = new short[kursach_count + 1];
+	for (int i = 0; i < kursach_count; i++)
+	{
+		temp[i] = kursach[i];
+	}
+	temp[kursach_count] = grade;
+	delete[] kursach;
+	kursach = temp;
+	kursach_count++;
+} 
+
+void Student::SetExams(const short grade) // Сеттер на создание оценок за экзамены
 {
-	this->exams = new short[size];
+	short* temp = new short[exams_count + 1];
+	for (int i = 0; i < exams_count; i++)
+	{
+		temp[i] = exams[i];
+	}
+	temp[exams_count] = grade;
+	delete[] kursach;
+	exams = temp;
+	exams_count++;
 }
 
-string Student::GetName() const //Показывает имя студента
+string Student::GetName() const //Показывает имя студента 
 {
 	return name;
 }
@@ -137,17 +164,28 @@ string Student::GetPhone() const //Показывает телефонный номер студента
 	return phone;
 }
 
-short* Student::GetZachot() const //Показывает оценки по зачетам
+void Student::GetZachot() //Показывает оценки по зачетам
 {
-	return zachot;
+	for (int i = 0; i < zachot_count; i++)
+	{
+		cout << zachot[i] << ", ";
+	}
 }
-short* Student::GetKursach() const //Показывает оценки за курсач
+
+void Student::GetKursach() //Показывает оценки за курсач
 {
-	return kursach;
+	for (int i = 0; i < kursach_count; i++)
+	{
+		cout << kursach[i] << ", ";
+	}
 }
-short* Student::GetExams() const //Показывает оценки за экзамены
+
+void Student::GetExams() //Показывает оценки за экзамены
 {
-	return exams;
+	for (int i = 0; i < exams_count; i++)
+	{
+		cout << exams[i] << ", ";
+	}
 }
 
 void Student::ShowStudent() // показ всех полей объекта студент
@@ -158,5 +196,10 @@ void Student::ShowStudent() // показ всех полей объекта студент
 	//cout << GetBirthday() << "\n";
 	cout << GetAddress() << "\n";
 	cout << GetPhone() << "\n";
-	cout << GetZachot() << "\n";
+	GetZachot();
+	cout << "\n";
+	GetKursach();
+	cout << "\n";
+	GetExams();
+	cout << "\n";
 }

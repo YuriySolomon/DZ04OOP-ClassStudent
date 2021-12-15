@@ -1,12 +1,6 @@
 #pragma once
 #include "AllLibraries.h"
-
-class Date
-{
-	short day;
-	short month;
-	short year;
-};
+#include "Date.h"
 
 class Student
 {
@@ -17,10 +11,13 @@ private:
 	Date birthday;
 	char* address;
 	char* phone;
-	short* zachot; // оценки по зачетам
-	short* kursach; // оценки за курсач
-	short* exams; // оценки за экзамены
-	unsigned short size = 50;
+	short* zachot = nullptr; // оценки по зачетам
+	short* kursach = nullptr; // оценки за курсач
+	short* exams = nullptr; // оценки за экзамены
+	unsigned short size = 50; // количество символов в массивах
+	short zachot_count = 0; // общее количесво оценок за зачет
+	short kursach_count = 0; // общее количесво оценок за курсач
+	short exams_count = 0; // общее количесво оценок за экзамены
 
 public:
 	Student();
@@ -34,18 +31,18 @@ public:
 	//void SetBirthday(Date birthday);
 	void SetAddress(const char* address); // Сеттер на ввод адреса
 	void SetPhone(const char* phone); // Сеттер на ввод адреса
-	void SetZachot(const int* zachot); // Сеттер на создание оценок по зачетам
-	void SetKursach(const int* kursach); // Сеттер на создание оценок за курсач
-	void SetExams(const int* exams); // Сеттер на создание оценок за экзамены
+	void SetZachot(const short grade); // Сеттер на создание оценок по зачетам
+	void SetKursach(const short grade); // Сеттер на создание оценок за курсач
+	void SetExams(const short grade); // Сеттер на создание оценок за экзамены
 	string GetName() const; //Показывает имя студента
 	string GetSurname() const; //Показывает фамилии студента
 	string GetOtchestvo() const; //Показывает отчество студента
 	//Date GetBirthday() const; //Показывает дату рождения студента
 	string GetAddress() const; //Показывает адресс студента
 	string GetPhone() const; //Показывает телефонный номер студента
-	short* GetZachot() const; //Показывает оценки по зачетам
-	short* GetKursach() const; //Показывает оценки за курсач
-	short* GetExams() const; //Показывает оценки за экзамены
+	void GetZachot(); //Показывает оценки по зачетам
+	void GetKursach(); //Показывает оценки за курсач
+	void GetExams(); //Показывает оценки за экзамены
 	void ShowStudent(); // показ всех полей объекта студент	
 };
 
