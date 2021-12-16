@@ -8,8 +8,7 @@ Student::Student(const char* name, const char* surname, const char* otchestvo, c
 {
 	SetName(name);
 	SetSurname(surname);
-	SetOtchestvo(otchestvo);
-	//SetBirthday(birthday);
+	SetOtchestvo(otchestvo);	
 	SetAddress(address);
 	SetPhone(phone);	
 }
@@ -18,8 +17,7 @@ Student::Student(const Student& original)
 {
 	SetName(original.name);
 	SetSurname(original.surname);
-	SetOtchestvo(original.otchestvo);
-	//SetBirthday(original.birthday);
+	SetOtchestvo(original.otchestvo);	
 	SetAddress(original.address);
 	SetPhone(original.phone);
 }
@@ -33,12 +31,14 @@ Student::~Student()
 	if (phone != nullptr) delete[] phone;
 	if (zachot != nullptr) delete[] zachot;
 }
+
 void Student::SetName(const char* name) // Сеттер на ввод имени
 {
 	if (strlen(name) == 0)
 	{
 		throw "Вы не ввели имя студента!\n";
 	}
+	delete[] this->name;
 	this->name = new char[size];
 	strcpy_s(this->name, size - 1, name);
 }
@@ -49,6 +49,7 @@ void Student::SetSurname(const char* surname) // Сеттер на ввод имени
 	{
 		throw "Вы не ввели фамилию студента!\n";
 	}
+	delete[] this->surname;
 	this->surname = new char[size];
 	strcpy_s(this->surname, size - 1, surname);
 }
@@ -59,6 +60,7 @@ void Student::SetOtchestvo(const char* otchestvo) // Сеттер на ввод отчества
 	{
 		throw "Вы не ввели отчество студента!\n";
 	}
+	delete[] this->otchestvo;
 	this->otchestvo = new char[size];
 	strcpy_s(this->otchestvo, size - 1, otchestvo);
 }
@@ -76,6 +78,7 @@ void Student::SetAddress(const char* address) // Сеттер на ввод адреса
 	{
 		throw "Вы не ввели адресс студента!\n";
 	}
+	delete[] this->address;
 	this->address = new char[size];
 	strcpy_s(this->address, size - 1, address);
 }
@@ -86,6 +89,7 @@ void Student::SetPhone(const char* phone) // Сеттер на ввод адреса
 	{
 		throw "Вы не ввели телефон студента!\n";
 	}
+	delete[] this->phone;
 	this->phone = new char[size];
 	strcpy_s(this->phone, size - 1, phone);
 }
